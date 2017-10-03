@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->  
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
+<head>
+    <title>Replicape Docs | support/printers/cartesian</title>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">    
+
+    <link rel="apple-touch-icon" sizes="180x180" href="../../_static/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../_static/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../_static/favicon-16x16.png">
+    <link rel="mask-icon" href="../../_static/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="../../_static/favicon.ico">
+
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="../../_static/plugins/bootstrap/css/bootstrap.min.css">
+    <!-- Plugins CSS -->    
+    <link rel="stylesheet" href="../../_static/plugins/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="../../_static/plugins/prism/prism.css">
+    <link rel="stylesheet" href="../../_static/plugins/elegant_font/css/style.css">
+    <link rel="stylesheet" href="../../_static/plugins/popup/magnific-popup.css">
+    
+    <!-- Theme CSS -->
+    <link id="theme-style" rel="stylesheet" href="../../_static/css/styles.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+</head> 
+
+<body class="body-blue">
+    <div class="page-wrapper">
+        <!-- ******Header****** -->
+        <header id="header" class="header">
+            <div class="container">
+                <div class="branding">
+                    <div class="logo">
+                        <a href="../../index.html">
+                            <img class="icon noborder" src="../../_static/images/thingprinter_logo.svg" />
+                            <span class="text-highlight">Replicape</span><span class="text-bold">Docs</span>
+                        </a>
+                    </div>
+                    <div class="version-select">
+                        <div class="dropdown">
+  <button class="btn btn-version dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">branch latest&nbsp;<span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1"><li class="tag-list">
+             <ul>
+                 <li><h5>Releases</h5></li>
+                    <li><a href="../../../2.0.5/support/printers/cartesian.html">v 2.0.5</a></li></ul>
+         </li>
+          <li class="branch-list">
+              <ul>
+                  <li><h5>Branches</h5></li>
+                    <li><a href="cartesian.html">latest</a></li></ul>
+          </li></ul>
+</div>
+                    </div><div class="version-msg"><div class="version-branch"></div></div></div><!--//branding-->
+                <ol class="breadcrumb">
+                    <li class="nav-item nav-item-0"><a href="../../index.html">Docs</a></li>
+                      <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Support</a></li>
+                </ol>
+            </div><!--//container-->
+        </header><!--//header-->
+        <div class="doc-wrapper">
+            <div class="container">
+                <div class="doc-body">
+                    <div class="doc-content">
+                        <div class="content-inner">
+                            <div class="github-edit">
+                                <div>
+                                    <a href="https://github.com/replicape/redeem/edit/latest/docs/support/printers/cartesian.rst">
+                                        <span class="text">edit on github</span>
+                                        <i class="fa fa-github"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="section" id="cartesian-printers">
+<h1>Cartesian Printers<a class="headerlink" href="#cartesian-printers" title="Permalink to this headline">¶</a></h1>
+<p><strong>*This is a work in progress, so bare with me… There are tons of
+varieties when it comes to Cartesian printers, and this tutorial will be
+as complicated to write as it is to set up one of these printers.*</strong></p>
+<p>Welcome to the <em>Setting up Replicape for Cartesian Printers</em> How-To!!</p>
+<p>First off, if this is your first printer, or maybe the first printer
+you’ve built yourself, please just take your time and don’t frustrate
+yourself. If you thought you were going to be printing on the first day
+or even the first week, I hate to break the news, but there is a
+learning curve involved. Try to have fun, and don’t hesitate to check in
+over at:
+<a class="reference external" href="https://www.thing-printer.com/wp-login.php?action=slack-invitation">Slack</a>
+and
+<a class="reference external" href="https://plus.google.com/communities/104577360369030938514">Google+</a>
+if you need some real-time help.</p>
+<ul class="simple">
+<li>I’m hoping you have figured out how to wire your steppers, end stops,
+fans, heaters, etc… I also hope you know your way around Cartesian
+space… from this point on, just remember that on your Cartesian
+printer, the <a class="reference external" href="front_left">front left</a> corner of your build plate
+is X ‘zero’, and Y ‘zero’ (0,0)… and when the tip of your hot end
+is touching your build plate your Z axis is at ‘zero’…</li>
+<li>When you first turn on your printer, the system is going to think
+it’s sitting at X ‘zero’, Y ‘zero’, Z ‘zero’ until it homes to it’s
+endstops, so until we have the correct configuration, let’s only make
+careful moves with the software.</li>
+</ul>
+<p>OK! So if your printer is wired up, and you have the software flashed,
+let’s get started!</p>
+<div class="section" id="configurations">
+<h2>Configurations<a class="headerlink" href="#configurations" title="Permalink to this headline">¶</a></h2>
+<p>Let’s open Octoprint and check out the Profile Configurations which are
+located in These guys are what tells Redeem (the software) everything it
+needs to know about your printer. At the bottom you’ll see
+<em>Default.cfg</em>… Click on the little eyeball and check out all of the
+commands in that file. This configuration contains all of the necessary
+commands that tells the software the size of the printer, how much power
+to send to your steppers, how fast it can move, and how slow, just to
+name a few… Ok, close that window… above <em>Default.cfg</em>, you’ll see
+<em>Printer.cfg</em>… these particular configurations are tweaked for
+specific printers, and whatever is written to this configuration will
+override the commands within the <em>Default.cfg</em>… if you have a name
+brand printer or a similar clone, you can choose the configuration that
+matches your printer and use it as your default profile. This could get
+you to third base with setting up your printer!</p>
+<p>Before we go printing, let’s talk a little more about that profile up
+top called “Local.cfg”… What? There’s nothing in that profile? You’re
+right! This is where you get to add commands to the configuration… and
+this configuration overrides the <em>Printer.cfg</em>, and the <em>Default.cfg</em>,
+so now I hope you’re seeing the “hierarchy” of the configurations…
+<em>Local.cfg</em> &gt; <em>Printer.cfg</em> &gt; <em>Default.cfg</em>…</p>
+</div>
+<div class="section" id="setting-up-your-local-cfg">
+<h2>Setting up your Local.cfg<a class="headerlink" href="#setting-up-your-local-cfg" title="Permalink to this headline">¶</a></h2>
+<p>Setting up your <em>Local.cfg</em> can get pretty complicated, but for now,
+we’re just going to get your printer moving normally, homing correctly,
+and stopping where it’s supposed to… once you’ve got your feet wet,
+and maybe waste deep, you’ll eventually need to dive into some deeper
+water to get your printer tweaked for maximum performance… I’ll tell
+you where to go at the end of this How-To. **Also** Whenever you add
+to or make changes to your <em>Local.cfg</em>, you’ll need to restart Redeem
+for those changes to take effect.</p>
+<p>For now, let’s get started with the basic entries you’ll need to get
+started!</p>
+<div class="section" id="system">
+<h3>[System]<a class="headerlink" href="#system" title="Permalink to this headline">¶</a></h3>
+<p>Let’s leave the <em>System</em> section alone for now, but if you’re using
+Toggle and a Manga Screen or similar, you’ll need to edit this section
+later to get those systems working. For now, just add:</p>
+<div class="line-block">
+<div class="line"><code class="docutils literal"><span class="pre">[System]</span></code></div>
+</div>
+</div>
+<div class="section" id="geomtery">
+<h3>[Geomtery]<a class="headerlink" href="#geomtery" title="Permalink to this headline">¶</a></h3>
+<p>The <em>Geometry</em> section basically lets the software know what kind of
+printer it’s dealing with. Having a Cartesian printer, you don’t even
+need this section in your <em>Local.cfg</em>, but I’ve decided to add it
+anyway. You can add this section if you want:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">Geometry</span><span class="p">]</span>
+<span class="c1"># 0 - Cartesian</span>
+<span class="c1"># 1 - H-belt</span>
+<span class="c1"># 2 - Core XY</span>
+<span class="c1"># 3 - Delta</span>
+<span class="n">axis_config</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="steppers">
+<h3>[Steppers]<a class="headerlink" href="#steppers" title="Permalink to this headline">¶</a></h3>
+<p>The <em>Steppers</em> section is where you’ll make changes for your stepper’s
+steps per mm, direction, supplied amperage, microstepping, and whether
+or not they’re in use. If you have two stepper motors for one axis this
+is where you will add the second stepper as a slave… I’ll have a
+second section for help with the slave stepper. Here are the following
+entries you can add to your <em>Stepper</em> section with explanations for
+each:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">Steppers</span><span class="p">]</span>
+<span class="c1"># steps per mm:</span>
+<span class="c1">#   Defined how many stepper full steps needed to move 1mm.</span>
+<span class="c1">#   Do not factor in microstepping settings.</span>
+<span class="c1">#   For example: If the axis will travel 10mm in one revolution and</span>
+<span class="c1">#                angle per step in 1.8deg (200step/rev), steps_pr_mm is 20.</span>
+<span class="n">steps_pr_mm_x</span> <span class="o">=</span> <span class="mf">4.0</span>
+<span class="n">steps_pr_mm_y</span> <span class="o">=</span> <span class="mf">4.0</span>
+<span class="n">steps_pr_mm_z</span> <span class="o">=</span> <span class="mf">50.0</span>
+<span class="n">steps_pr_mm_e</span> <span class="o">=</span> <span class="mf">6.0</span>
+<span class="n">steps_pr_mm_h</span> <span class="o">=</span> <span class="mf">6.0</span>
+<span class="n">steps_pr_mm_a</span> <span class="o">=</span> <span class="mf">6.0</span>
+<span class="n">steps_pr_mm_b</span> <span class="o">=</span> <span class="mf">6.0</span>
+<span class="n">steps_pr_mm_c</span> <span class="o">=</span> <span class="mf">6.0</span>
+<span class="c1"># Which steppers are enabled</span>
+<span class="n">in_use_x</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">in_use_y</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">in_use_z</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">in_use_e</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">in_use_h</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">in_use_a</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">in_use_b</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">in_use_c</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="c1"># Set to -1 if axis is inverted</span>
+<span class="n">direction_x</span> <span class="o">=</span>  <span class="mi">1</span>
+<span class="n">direction_y</span> <span class="o">=</span>  <span class="mi">1</span>
+<span class="n">direction_z</span> <span class="o">=</span>  <span class="mi">1</span>
+<span class="n">direction_e</span> <span class="o">=</span>  <span class="mi">1</span>
+<span class="n">direction_h</span> <span class="o">=</span>  <span class="mi">1</span>
+<span class="n">direction_a</span> <span class="o">=</span>  <span class="mi">1</span>
+<span class="n">direction_b</span> <span class="o">=</span>  <span class="mi">1</span>
+<span class="n">direction_c</span> <span class="o">=</span>  <span class="mi">1</span>
+<span class="c1"># A stepper controller can operate in slave mode,</span>
+<span class="c1"># meaning that it will mirror the position of the</span>
+<span class="c1"># specified stepper. Typically, H will mirror Y or Z,</span>
+<span class="c1"># in the case of the former, write this: slave_y = H.</span>
+<span class="n">slave_x</span> <span class="o">=</span>
+<span class="n">slave_y</span> <span class="o">=</span>
+<span class="n">slave_z</span> <span class="o">=</span>
+<span class="n">slave_e</span> <span class="o">=</span>
+<span class="n">slave_h</span> <span class="o">=</span>
+<span class="n">slave_a</span> <span class="o">=</span>
+<span class="n">slave_b</span> <span class="o">=</span>
+<span class="n">slave_c</span> <span class="o">=</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="endstops">
+<h3>[Endstops]<a class="headerlink" href="#endstops" title="Permalink to this headline">¶</a></h3>
+<p>The first thing we need to do is make sure your endstops are working
+correctly… to do this, all you need to do is go into Octoprint and
+open the Terminal. When you press in your endstop switches, you should
+see a message in the terminal that displays which end stop was hit. If
+you’re not seeing this message, then</p>
+</div>
+<div class="section" id="homing">
+<h3>[Homing]<a class="headerlink" href="#homing" title="Permalink to this headline">¶</a></h3>
+<p>Updated 09/28/17 by: Dancook</p>
+</div>
+</div>
+</div>
+
+                        </div><!--//content-inner-->
+                    </div><!--//doc-content-->
+                    <div class="doc-sidebar hidden-xs">
+                        <nav id="doc-nav">
+                            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../replicape/index.html">Replicape</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/index.html">Development</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Support</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../nomenclature.html">Nomenclature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting.html">Troubleshooting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../knownproblems.html">Known problems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../howto/imageburn.html">Image Burn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../howto/zprobes.html">Z Probes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../howto/endstops.html">Endstops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../howto/homing.html">Homing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../howto/beginlinux.html">Linux Beginner Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../howto/linklocal.html">Link Local</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../howto/octoprint.html">OctoPrint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../howto/marlinmigration.html">Migrate from Marlin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../howto/bltouch.html">BLTouch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="corexy.html">Core XY</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Cartesian Printers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#configurations">Configurations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#setting-up-your-local-cfg">Setting up your Local.cfg</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#system">[System]</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#geomtery">[Geomtery]</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#steppers">[Steppers]</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#endstops">[Endstops]</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#homing">[Homing]</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="delta.html">Delta Printers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../attribution.html">Attributions</a></li>
+</ul>
+
+                        </nav>
+                    </div><!--//doc-sidebar-->
+                </div><!--//doc-body-->              
+            </div><!--//container-->
+        </div><!--//doc-wrapper-->
+    </div><!--//page-wrapper-->
+    
+    <footer id="footer" class="footer text-center">
+        <div class="container">
+            <small class="copyright">&copy 2017, Replicape, ThingPrinter</small></small>
+            <small class="copyright">Sphinx theme based on the <a href="https://themes.3rdwavemedia.com/demo/prettydocs/">Pretty Docs</a> design.</small>
+        </div><!--//container-->
+    </footer><!--//footer-->
+
+    <!-- Main Javascript -->          
+    <script type="text/javascript" src="../../_static/plugins/jquery-1.12.3.min.js"></script>
+    <script type="text/javascript" src="../../_static/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../_static/plugins/prism/prism.js"></script>
+    <script type="text/javascript" src="../../_static/plugins/jquery-scrollTo/jquery.scrollTo.min.js"></script>
+    <script type="text/javascript" src="../../_static/plugins/jquery-match-height/jquery.matchHeight-min.js"></script>
+    <script type="text/javascript" src="../../_static/plugins/popup/jquery.magnific-popup.js"></script>
+
+
+    <script type="text/javascript">
+        window.MathJax = {
+            asciimath2jax: {
+                ignoreClass: 'problematic'
+            }
+        };
+    </script>
+
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    <script type="text/javascript" src="../../_static/js/main.js"></script>
+    
+</body>
+</html> 
