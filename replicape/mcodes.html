@@ -77,7 +77,7 @@
                         <div class="content-inner">
                             <div class="github-edit">
                                 <div>
-                                    <a href="https://github.com/replicape/redeem/edit/latest/docs/replicape/mcodes.rst">
+                                    <a href="https://github.com/intelligent-agent/redeem/edit/develop/docs/replicape/mcodes.rst">
                                         <span class="text">edit on github</span>
                                         <i class="fa fa-github"></i>
                                     </a>
@@ -115,38 +115,177 @@
         
         <p>Reset the stepper controllers</p>
         
-    </div></div><div class="section" id="m21">
+    </div></div><div class="section" id="m20">
+<h2>M20<a class="headerlink" href="#m20" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class='row'><div class='col-xs-4'>List all files on an external memory location</div><div class='col-xs-8'><div class="document">
+<p>For an already attached external memory location, list all the files available. The
+supported devices are:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="87%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">id</th>
+<th class="head">device</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>/usb</td>
+<td>usb memory attached to host</td>
+</tr>
+<tr><td>/sd</td>
+<td>microsd card</td>
+</tr>
+<tr><td>/lcl</td>
+<td>local storage (octoprint)</td>
+</tr>
+</tbody>
+</table>
+<p>Use <tt class="docutils literal">M21</tt> to attach a device.</p>
+<pre class="literal-block">
+&gt; M20 /usb
+- /usb/myfile.gcode
+- /usb/mydirectory/myotherfile.gcode
+- /usb/yetanotherfile.gcode
+
+&gt; M20 /lcl
+- /lcl/example.gcode
+</pre>
+</div>
+</div></div><div class="section" id="m21">
 <h2>M21<a class="headerlink" href="#m21" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class='row'><div class='col-xs-4'>Deprecated</div><div class='col-xs-8'>
-        
-        <p>Disabled; Redeem does not have support for SD cards.</p>
-        
-    </div></div><div class="section" id="m23">
+<div class='row'><div class='col-xs-4'>Initialize external memory location</div><div class='col-xs-8'><div class="document">
+<p>Attach external memory device, choose from:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="87%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">id</th>
+<th class="head">device</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>/usb</td>
+<td>usb memory attached to host</td>
+</tr>
+<tr><td>/sd</td>
+<td>microsd card</td>
+</tr>
+<tr><td>/lcl</td>
+<td>local storage (octoprint)</td>
+</tr>
+</tbody>
+</table>
+<pre class="literal-block">
+&gt; M20 /usb
+&gt; M20 /sd
+</pre>
+<p>Use <tt class="docutils literal">M22</tt> to unattach a device before removing.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">local storage is always mounted; used with M21 will be a no-op</p>
+</div>
+</div>
+</div></div><div class="section" id="m22">
+<h2>M22<a class="headerlink" href="#m22" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class='row'><div class='col-xs-4'>Release external memory location</div><div class='col-xs-8'><div class="document">
+<p>Disconnect external memory device, choose from:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="87%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">id</th>
+<th class="head">device</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>/usb</td>
+<td>usb memory attached to host</td>
+</tr>
+<tr><td>/sd</td>
+<td>microsd card</td>
+</tr>
+<tr><td>/lcl</td>
+<td>local storage (octoprint)</td>
+</tr>
+</tbody>
+</table>
+<pre class="literal-block">
+&gt; M21 /usb
+&gt; M21 /sd
+</pre>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">local storage is always mounted; used with M22 will be a no-op</p>
+</div>
+</div>
+</div></div><div class="section" id="m23">
 <h2>M23<a class="headerlink" href="#m23" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class='row'><div class='col-xs-4'>Run gcode from file system.</div><div class='col-xs-8'><div class="document">
-<p>Load <em>and begin printing</em> a gcode file from a usb memory stick.</p>
+<div class='row'><div class='col-xs-4'>Choose a file from external location</div><div class='col-xs-8'><div class="document">
+<p>Choose a gcode file for printing from external location:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="87%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">id</th>
+<th class="head">device</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>/usb</td>
+<td>usb memory attached to host</td>
+</tr>
+<tr><td>/sd</td>
+<td>microsd card</td>
+</tr>
+<tr><td>/lcl</td>
+<td>local storage (octoprint)</td>
+</tr>
+</tbody>
+</table>
 <pre class="literal-block">
-&gt; M23 circle.gcode
-&gt; M32 afoldername/circle.gcode
+&gt; M23 /usb/myfile.gcode
+&gt; M23 /sd/myfolder/myotherfile.gcode
+&gt; M23 /lcl/anotherfile.gcode
 </pre>
 </div>
 </div></div><div class="section" id="m24">
 <h2>M24<a class="headerlink" href="#m24" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class='row'><div class='col-xs-4'>Resume the print where it was paused by the M25 command.</div><div class='col-xs-8'>
-        
-        <p>Resume the print where it was paused by the M25 command.</p>
-        
-    </div></div><div class="section" id="m25">
+<div class='row'><div class='col-xs-4'>Start/unpause a print</div><div class='col-xs-8'><div class="document">
+<p>Start printing from an externally selected file using the <tt class="docutils literal">M23</tt> command.</p>
+<p>If the current print (from any source) was paused by <tt class="docutils literal">M25</tt>, this will resume the print.</p>
+</div>
+</div></div><div class="section" id="m25">
 <h2>M25<a class="headerlink" href="#m25" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class='row'><div class='col-xs-4'>Pause the current print.</div><div class='col-xs-8'>
         
         <p>Pause the current print.</p>
         
-    </div></div><div class="section" id="m81">
+    </div></div><div class="section" id="m27">
+<h2>M27<a class="headerlink" href="#m27" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class='row'><div class='col-xs-4'>Report external file print status</div><div class='col-xs-8'><div class="document">
+<p>If printing from an externally selected file (from <tt class="docutils literal">M23</tt>), display of how many lines
+from the active file have been processed. Will also display total number of lines in the file.</p>
+<pre class="literal-block">
+&gt; M27
+file '/usb/myfolder/myfile.gcode' printing: 10 of 211 lines
+</pre>
+</div>
+</div></div><div class="section" id="m81">
 <h2>M81<a class="headerlink" href="#m81" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class='row'><div class='col-xs-4'>Shutdown or restart Replicape</div><div class='col-xs-8'>
@@ -455,7 +594,11 @@ ex. M141 P0 I1000 S0.5</div><div class='col-xs-8'>
 </div>
 <div class='row'><div class='col-xs-4'>Run PID tuning</div><div class='col-xs-8'>
         
-        <p>PID Tuning refers to a control algorithm used in some repraps to tune heating behavior for hot ends and heated beds. This command generates Proportional (Kp), Integral (Ki), and Derivative (Kd) values for the hotend or bed (E-1). Send the appropriate code and wait for the output to update the firmware. H<0 or 1> overrides the extruder. Use P-1 for heated bed. </p>
+        <p>PID Tuning refers to a control algorithm used in some repraps to tune heating behavior for hot ends and heated beds. This command generates Proportional (Kp), Integral (Ki), and Derivative (Kd) values for the hotend or bed (E-1). Send the appropriate code and wait for the output to update the firmware. </p>
+        
+        <p>Inputs:</p>
+        
+        <p>H<0 or 1> overrides the extruder. Use H-1 for heated bed. </p>
         
         <p>Default is the 'E' extruder with index 0. </p>
         
@@ -729,10 +872,13 @@ ex. M141 P0 I1000 S0.5</div><div class='col-xs-8'>
 <li class="toctree-l3"><a class="reference internal" href="#m17">M17</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#m18">M18</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#m19">M19</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#m20">M20</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#m21">M21</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#m22">M22</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#m23">M23</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#m24">M24</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#m25">M25</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#m27">M27</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#m81">M81</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#m82">M82</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#m83">M83</a></li>

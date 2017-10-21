@@ -77,7 +77,7 @@
                         <div class="content-inner">
                             <div class="github-edit">
                                 <div>
-                                    <a href="https://github.com/replicape/redeem/edit/latest/docs/replicape/configuration.rst">
+                                    <a href="https://github.com/intelligent-agent/redeem/edit/develop/docs/replicape/configuration.rst">
                                         <span class="text">edit on github</span>
                                         <i class="fa fa-github"></i>
                                     </a>
@@ -937,8 +937,7 @@ watchdog which only disables the steppers.</p>
 <p>The macro-section contains macros. Duh. Right now, only G29, G31 and G32
 has macro definitions and it’s basically a set of other G-codes. To make
 a new macro, you need to also define the actual g-code file for it. That
-is beyond this wiki, but look at G29 in the repository, for instance:
-<a class="reference external" href="https://bitbucket.org/intelligentagent/redeem/src/73c21486b1e294570a125e9fac6c9cef9b4f273b/redeem/gcodes/G29.py?at=develop">2</a></p>
+is beyond this wiki, but look at <a class="reference external" href="https://github.com/intelligent-agent/redeem/src/73c21486b1e294570a125e9fac6c9cef9b4f273b/redeem/gcodes/G29.py?at=develop">G29</a> in the repository.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Each line in macros section needs to be spaced the same or you may
@@ -960,11 +959,11 @@ direction_z = -1 or direction_z = +1, then confirm your z
 stops/homing, ect work make corrections as required. You will also
 most likely need to change under [Geometry] travel_z direction.
 This should trick the probe into moving in the correct direction.</p>
-<p><strong>G31</strong>:</p>
+<p><strong>G31</strong></p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">M574</span> <span class="n">Z2</span>  <span class="p">;</span> <span class="n">Probe</span> <span class="n">up</span> <span class="p">(</span><span class="n">Dock</span> <span class="n">sled</span><span class="p">)</span>
 </pre></div>
 </div>
-<p><strong>G32</strong>:</p>
+<p><strong>G32</strong></p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">M574</span> <span class="n">Z2</span> <span class="n">z_ccw</span><span class="p">,</span> <span class="n">h_ccw</span>  <span class="p">;</span> <span class="n">Probe</span> <span class="n">down</span> <span class="p">(</span><span class="n">Undock</span> <span class="n">sled</span><span class="p">)</span>
 </pre></div>
 </div>
