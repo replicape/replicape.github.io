@@ -85,9 +85,7 @@
                             </div>
                             <div class="section" id="cartesian-printers">
 <h1>Cartesian Printers<a class="headerlink" href="#cartesian-printers" title="Permalink to this headline">¶</a></h1>
-<p><strong>*This is a work in progress, so bare with me… There are tons of
-varieties when it comes to Cartesian printers, and this tutorial will be
-as complicated to write as it is to set up one of these printers.*</strong></p>
+<p><strong>*This is a work in progress, so bare with me…*</strong></p>
 <p>Welcome to the <em>Setting up Replicape for Cartesian Printers</em> How-To!!</p>
 <p>First off, if this is your first printer, or maybe the first printer
 you’ve built yourself, please just take your time and don’t frustrate
@@ -110,6 +108,8 @@ is touching your build plate your Z axis is at ‘zero’…</li>
 it’s sitting at X ‘zero’, Y ‘zero’, Z ‘zero’ until it homes to it’s
 endstops, so until we have the correct configuration, let’s only make
 careful moves with the software.</li>
+<li>Setting up your printer will require accuracy, so if you don’t have a
+digital caliper on hand, I suggest you stop right now and grab one.</li>
 </ul>
 <p>OK! So if your printer is wired up, and you have the software flashed,
 let’s get started!</p>
@@ -127,60 +127,49 @@ name a few… Ok, close that window… above <em>Default.cfg</em>, you’ll see
 specific printers, and whatever is written to this configuration will
 override the commands within the <em>Default.cfg</em>… if you have a name
 brand printer or a similar clone, you can choose the configuration that
-matches your printer and use it as your default profile. This could get
-you to third base with setting up your printer!</p>
-<p>Before we go printing, let’s talk a little more about that profile up
-top called “Local.cfg”… What? There’s nothing in that profile? You’re
-right! This is where you get to add commands to the configuration… and
-this configuration overrides the <em>Printer.cfg</em>, and the <em>Default.cfg</em>,
-so now I hope you’re seeing the “hierarchy” of the configurations…
+matches your printer by clicking the star symbol and make it your
+default Printer Profile. This could get you to third base with setting
+up your printer! You may have noticed that you can’t edit the commands
+in your <em>Default.cfg</em> and <em>Printer.cfg</em>… that’s where the <em>Local.cfg</em>
+up top comes in. What? There’s nothing in that profile? You’re right!
+This is where you get to add commands to the configuration… and this
+configuration overrides the <em>Printer.cfg</em>, and the <em>Default.cfg</em>, so now
+I hope you’re seeing the “hierarchy” of the configurations…
 <em>Local.cfg</em> &gt; <em>Printer.cfg</em> &gt; <em>Default.cfg</em>…</p>
+<p>As I noted before, if your printer is a name brand or clone of a certain
+printer brand, you can go ahead and make one of the <em>Printer.cfg</em>
+profiles your default by clicking the star on the particular profile you
+want to use.</p>
+<p><strong>Whenever you make any changes to Redeem, you will need to restart
+Redeem by clicking the *Restart Redeem* button below the profiles or
+from the *System* tab at the top of Octoprint. Your changes will not
+take effect until you do so.</strong></p>
+<div class="figure">
+<img alt="../../_images/Restart_Redeem.jpg" src="../../_images/Restart_Redeem.jpg" />
+</div>
+</div>
+<div class="section" id="using-printer-cfg">
+<h2>Using Printer.cfg<a class="headerlink" href="#using-printer-cfg" title="Permalink to this headline">¶</a></h2>
+<p>If you’re planning to use a <em>Printer.cfg</em> profile as your default, you
+can restart Redeem as mentioned above and move on to the <em>Checking your
+configuration</em> section to see if the configuration works as it should.
+However, I suggest reading through the following section to get a better
+understanding of the bits and pieces of the configuration. Chances are,
+you’ll need to make adjustments to the entries explained in the next
+section anyways.</p>
 </div>
 <div class="section" id="setting-up-your-local-cfg">
 <h2>Setting up your Local.cfg<a class="headerlink" href="#setting-up-your-local-cfg" title="Permalink to this headline">¶</a></h2>
-<p>Setting up your <em>Local.cfg</em> can get pretty complicated, but for now,
-we’re just going to get your printer moving normally, homing correctly,
-and stopping where it’s supposed to… once you’ve got your feet wet,
-and maybe waste deep, you’ll eventually need to dive into some deeper
-water to get your printer tweaked for maximum performance… I’ll tell
-you where to go at the end of this How-To. **Also** Whenever you add
-to or make changes to your <em>Local.cfg</em>, you’ll need to restart Redeem
-for those changes to take effect.</p>
-<p>For now, let’s get started with the basic entries you’ll need to get
-started!</p>
-<div class="section" id="system">
-<h3>[System]<a class="headerlink" href="#system" title="Permalink to this headline">¶</a></h3>
-<p>Let’s leave the <em>System</em> section alone for now, but if you’re using
-Toggle and a Manga Screen or similar, you’ll need to edit this section
-later to get those systems working. For now, just add:</p>
-<div class="line-block">
-<div class="line"><code class="docutils literal"><span class="pre">[System]</span></code></div>
-</div>
-</div>
-<div class="section" id="geomtery">
-<h3>[Geomtery]<a class="headerlink" href="#geomtery" title="Permalink to this headline">¶</a></h3>
-<p>The <em>Geometry</em> section basically lets the software know what kind of
-printer it’s dealing with. Having a Cartesian printer, you don’t even
-need this section in your <em>Local.cfg</em>, but I’ve decided to add it
-anyway. You can add this section if you want:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">Geometry</span><span class="p">]</span>
-<span class="c1"># 0 - Cartesian</span>
-<span class="c1"># 1 - H-belt</span>
-<span class="c1"># 2 - Core XY</span>
-<span class="c1"># 3 - Delta</span>
-<span class="n">axis_config</span> <span class="o">=</span> <span class="mi">0</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="steppers">
-<h3>[Steppers]<a class="headerlink" href="#steppers" title="Permalink to this headline">¶</a></h3>
-<p>The <em>Steppers</em> section is where you’ll make changes for your stepper’s
-steps per mm, direction, supplied amperage, microstepping, and whether
-or not they’re in use. If you have two stepper motors for one axis this
-is where you will add the second stepper as a slave… I’ll have a
-second section for help with the slave stepper. Here are the following
-entries you can add to your <em>Stepper</em> section with explanations for
-each:</p>
+<p>So now that we’ve discussed the three levels of configurations, let’s
+get started with editing your <em>Local.cfg</em>! Setting up your <em>Local.cfg</em>
+can get pretty complicated, but for now, we’re just going to get your
+printer moving normally, homing correctly, and stopping where it’s
+supposed to… once you’ve got your feet wet, and maybe waste deep,
+you’ll eventually need to dive into some deeper water to get your
+printer tweaked for maximum performance… I’ll tell you where to go at
+the end of this How-To.</p>
+<p>Copy and paste the following commands within the text block to your
+<em>local.cfg</em>.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">Steppers</span><span class="p">]</span>
 <span class="c1"># steps per mm:</span>
 <span class="c1">#   Defined how many stepper full steps needed to move 1mm.</span>
@@ -192,27 +181,21 @@ each:</p>
 <span class="n">steps_pr_mm_z</span> <span class="o">=</span> <span class="mf">50.0</span>
 <span class="n">steps_pr_mm_e</span> <span class="o">=</span> <span class="mf">6.0</span>
 <span class="n">steps_pr_mm_h</span> <span class="o">=</span> <span class="mf">6.0</span>
-<span class="n">steps_pr_mm_a</span> <span class="o">=</span> <span class="mf">6.0</span>
-<span class="n">steps_pr_mm_b</span> <span class="o">=</span> <span class="mf">6.0</span>
-<span class="n">steps_pr_mm_c</span> <span class="o">=</span> <span class="mf">6.0</span>
+
 <span class="c1"># Which steppers are enabled</span>
 <span class="n">in_use_x</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="n">in_use_y</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="n">in_use_z</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="n">in_use_e</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="n">in_use_h</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="n">in_use_a</span> <span class="o">=</span> <span class="kc">False</span>
-<span class="n">in_use_b</span> <span class="o">=</span> <span class="kc">False</span>
-<span class="n">in_use_c</span> <span class="o">=</span> <span class="kc">False</span>
+
 <span class="c1"># Set to -1 if axis is inverted</span>
 <span class="n">direction_x</span> <span class="o">=</span>  <span class="mi">1</span>
 <span class="n">direction_y</span> <span class="o">=</span>  <span class="mi">1</span>
 <span class="n">direction_z</span> <span class="o">=</span>  <span class="mi">1</span>
 <span class="n">direction_e</span> <span class="o">=</span>  <span class="mi">1</span>
 <span class="n">direction_h</span> <span class="o">=</span>  <span class="mi">1</span>
-<span class="n">direction_a</span> <span class="o">=</span>  <span class="mi">1</span>
-<span class="n">direction_b</span> <span class="o">=</span>  <span class="mi">1</span>
-<span class="n">direction_c</span> <span class="o">=</span>  <span class="mi">1</span>
+
 <span class="c1"># A stepper controller can operate in slave mode,</span>
 <span class="c1"># meaning that it will mirror the position of the</span>
 <span class="c1"># specified stepper. Typically, H will mirror Y or Z,</span>
@@ -222,23 +205,71 @@ each:</p>
 <span class="n">slave_z</span> <span class="o">=</span>
 <span class="n">slave_e</span> <span class="o">=</span>
 <span class="n">slave_h</span> <span class="o">=</span>
-<span class="n">slave_a</span> <span class="o">=</span>
-<span class="n">slave_b</span> <span class="o">=</span>
-<span class="n">slave_c</span> <span class="o">=</span>
+
+<span class="p">[</span><span class="n">Endstops</span><span class="p">]</span>
+<span class="n">has_x</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">has_y</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">has_z</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">invert_X1</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">invert_Y1</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">invert_Z1</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">end_stop_X1_stops</span> <span class="o">=</span>
+<span class="n">end_stop_Y1_stops</span> <span class="o">=</span>
+<span class="n">end_stop_Z1_stops</span> <span class="o">=</span>
+
+<span class="c1"># Example: end_stop_X1_stops = x_neg ``\ *``or``*\ `` x_pos ...</span>
+<span class="p">[</span><span class="n">Homing</span><span class="p">]</span>
+<span class="n">home_x</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">home_y</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">home_z</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">home_e</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">home_h</span> <span class="o">=</span> <span class="mf">0.0</span>
 </pre></div>
 </div>
 </div>
+<div class="section" id="checking-your-configuration">
+<h2>Checking your Configuration<a class="headerlink" href="#checking-your-configuration" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="endstops">
-<h3>[Endstops]<a class="headerlink" href="#endstops" title="Permalink to this headline">¶</a></h3>
+<h3>Endstops<a class="headerlink" href="#endstops" title="Permalink to this headline">¶</a></h3>
 <p>The first thing we need to do is make sure your endstops are working
 correctly… to do this, all you need to do is go into Octoprint and
 open the Terminal. When you press in your endstop switches, you should
 see a message in the terminal that displays which end stop was hit. If
-you’re not seeing this message, then</p>
+you’re not seeing this message, then you need to go back to your
+<em>Local.cfg</em> and scroll down to [Endstops]… change the <em>invert</em> command
+for that stepper from <em>False</em> to <em>True</em>… Restart Redeem, and reopen
+the Terminal. Physically press the endstop switch again and see if the
+message appears. If not, check that you have wired the switch correctly.</p>
 </div>
-<div class="section" id="homing">
-<h3>[Homing]<a class="headerlink" href="#homing" title="Permalink to this headline">¶</a></h3>
-<p>Updated 09/28/17 by: Dancook</p>
+<div class="section" id="stepper-direction">
+<h3>Stepper Direction<a class="headerlink" href="#stepper-direction" title="Permalink to this headline">¶</a></h3>
+<p><strong>* If you have two steppers on one axis, then you will need to either
+use a Y-cable or set up *H-axis* as the slave for that axis… my
+suggestion is to set up one stepper at a time. Once you have one stepper
+working correctly, you can unplug it from the board and connect the
+slave stepper to the *H-axis*…</strong></p>
+<p>Open your Terminal and enter <em>M18</em>… Physically move your XY gantry to
+the center of the printer… Once it’s positioned in the center, enter
+<em>G92 X</em> in the Terminal… this will zero your X-axis… Now enter <em>G1
+X20 F300</em> into the terminal… Your X-axis should move to the right…
+if it doesn’t, you need to open your <em>Local.cfg</em> and scroll to the
+[Steppers] section… Change “direction_x = 1” to “direction_x =
+-1”… Restart Redeem and try these steps again. Afterwards, if your
+X-axis is moving to the right as it should, you can move on to the
+Y-axis…</p>
+<p>Use the same method to check your Y-axis… Center the gantry… enter
+<em>G92 Y</em> to zero the axis, and then enter <em>G1 Y20 F300</em> into the
+terminal… it should move to the rear… if not, change <em>direction_y =
+1</em> to <em>direction_y = -1</em>… Restart Redeem… check it again…</p>
+<p>You may need to physically screw your Z-axis to somewhere around midway,
+so enter <em>M18</em> into your terminal and turn the screw until it’s close to
+midway.. Once it’s there, enter <em>G92 Z</em> to zero your Z-axis, and then
+enter <em>G1 Z20 F300</em>… if your nozzle doesn’t move away from your bed,
+then you need to change <em>direction_z = 1</em> to <em>direction_z = -1</em> and
+try again the same way you did with X and Y…</p>
+<p><strong>If for some reason, your stepper doesn’t move when you give the *G1*
+commands up above, you may need to invert the endstop for that specific
+axis.</strong></p>
 </div>
 </div>
 </div>
@@ -267,12 +298,11 @@ you’re not seeing this message, then</p>
 <li class="toctree-l2"><a class="reference internal" href="corexy.html">Core XY</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Cartesian Printers</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#configurations">Configurations</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#setting-up-your-local-cfg">Setting up your Local.cfg</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#system">[System]</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#geomtery">[Geomtery]</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#steppers">[Steppers]</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#endstops">[Endstops]</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#homing">[Homing]</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-printer-cfg">Using Printer.cfg</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#setting-up-your-local-cfg">Setting up your Local.cfg</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#checking-your-configuration">Checking your Configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#endstops">Endstops</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#stepper-direction">Stepper Direction</a></li>
 </ul>
 </li>
 </ul>
